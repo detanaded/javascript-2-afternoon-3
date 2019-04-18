@@ -8,7 +8,6 @@
   In this repo your job is to write functions to make each function call work properly.
 
   Here's an example of code that will be given to you:
-
   sayHi('Hi Katie', function(thingToSay){
     alert(thingToSay);
   });
@@ -28,6 +27,9 @@
 */
 
 // Code Here 
+function first(array, callback){
+  callback(array[0]);
+}
 
 // Do not edit the code below.
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -48,7 +50,9 @@ first(names, function(firstName){
 */
 
 //Code Here
-
+function last(array, callback) {
+  callback(array[array.length-1]);
+}
 // Do not edit the code below.
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -66,7 +70,10 @@ last(names, function(lastName){
 */
 
 //Code Here
-
+function multiply(num1, num2, cb) {
+  var answer = num1 * num2;
+  cb(answer);
+}
 // Do not edit the code below.
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -85,6 +92,17 @@ multiply(4, 3, function(answer){
 */
 
 //Code Here 
+
+
+function contains(names, value, cb) {
+  var isFound = false;
+  for(var i = 0; i < names.length; i++) {
+    if (names[i] === value) {
+      isFound = true;
+    }
+  }
+  cb(isFound);
+}
 
 // Do not edit the code below.
 contains(names, 'Colt', function(result){
@@ -106,6 +124,25 @@ contains(names, 'Colt', function(result){
 */
 
 //Code Here
+function onList(arr, value) {
+  for(var i = 0; i < arr.length; i++) {
+    if(arr[i] === value) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function uniq(names, cb) {
+  var newarr = [];
+  for(var i = 0; i < names.length; i++) {
+    if(!onList(newarr, names[i])) {
+      newarr.push(names[i]);
+    }
+  }
+  cb(newarr);
+  return newarr;
+}
 
 // Do not edit the code below.
 uniq(names, function(uniqArr){
@@ -123,6 +160,12 @@ uniq(names, function(uniqArr){
 */
 
 //Code Here 
+function each(names, cb) {
+  // names.forEach(cb);
+  for(var i = 0; i < names.length; i++) {
+    cb(names[i], i);
+  }
+}
 
 // Do not edit the code below.
 each(names, function(item, indice){
@@ -140,6 +183,15 @@ each(names, function(item, indice){
 */
 
 // Code here
+
+function getUserById(users, id, cb) {
+  for(var i = 0; i < users.length; i++) {
+    if(users[i].id === id) {
+      return cb(users[i]);
+    }
+  }
+  console.log("Not Found");
+}
 
 // Do not edit the code below.
 var users = [
